@@ -1,4 +1,5 @@
 #include <iostream>
+#include "SharedPtr.h"
 /*
  * constructor
  * orerator*()
@@ -8,50 +9,6 @@
  * support: =,==,!=
  * */
 
-
-template <typename T> class UniquePtr{
-    T* ptr= nullptr;
-public:
-    explicit UniquePtr(T *ptr= nullptr) : ptr(ptr) {}
-
-    UniquePtr(UniquePtr&& src){
-        this->ptr=src.ptr;
-        src.ptr = nullptr;
-    }
-
-    UniquePtr& operator=(T* ptr){
-        if(this->ptr!= nullptr) delete this->ptr;
-        this->ptr=ptr;
-        return *this;
-    }
-
-    UniquePtr& operator=(UniquePtr&& right){
-        this->ptr=right.ptr;
-        right.ptr = nullptr;
-        return *this;
-    }
-
-    T& operator*() const {
-        return *ptr;
-    }
-
-    T* operator->() const{
-        return ptr;
-    }
-
-    bool operator==(const T *right) const{
-        return this->ptr == right;
-    }
-    bool operator!=(const T *right) const{
-        return this->ptr != right;
-    }
-
-
-
-    ~UniquePtr() {
-        if(ptr!= nullptr) delete ptr;
-    }
-};
 
 
 
@@ -98,7 +55,11 @@ int main() {
 
 
 //Point points[10];
-    UniquePtr<Point> points[10];
+    std::shared_ptr<Point> point(new Point(2,5));
+
+    auto point2 = point;
+
+    std::cout<<point->getX()<<"=="<<point2->getX()<<std::endl;
 
 
 

@@ -3,4 +3,4 @@ project(06_mart_ptr)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(06_mart_ptr main.cpp)
+add_executable(06_mart_ptr main.cpp UniquePtr.h SharedPtr.h)
